@@ -14,12 +14,14 @@ class Exp(MyExp):
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
         # Define yourself dataset path
-        self.data_dir = "datasets/coco128"
-        self.train_ann = "instances_train2017.json"
-        self.val_ann = "instances_val2017.json"
+        self.data_dir = "/mnt/ts-cvml-datastore/ts_data/datasets/cotton/yolo_x"
+        self.train_ann = "train_1.0.1.json"
+        self.val_ann = "dev_1.0.1.json"
 
-        self.num_classes = 71
+        self.num_classes = 1
+        self.input_size = (640, 640)
+        self.multiscale_range = 0
 
-        self.max_epoch = 300
-        self.data_num_workers = 4
+        self.max_epoch = 500
+        self.data_num_workers = 12
         self.eval_interval = 1

@@ -21,8 +21,8 @@ class COCODataset(Dataset):
     def __init__(
         self,
         data_dir=None,
-        json_file="instances_train2017.json",
-        name="train2017",
+        json_file="train_1.0.1.json",
+        name="train_1.0.1",
         img_size=(416, 416),
         preproc=None,
         cache=False,
@@ -117,6 +117,7 @@ class COCODataset(Dataset):
         im_ann = self.coco.loadImgs(id_)[0]
         width = im_ann["width"]
         height = im_ann["height"]
+        #the next line had an argument called iscrowd=False which was remove
         anno_ids = self.coco.getAnnIds(imgIds=[int(id_)], iscrowd=False)
         annotations = self.coco.loadAnns(anno_ids)
         objs = []
@@ -167,11 +168,19 @@ class COCODataset(Dataset):
 
     def load_image(self, index):
         file_name = self.annotations[index][3]
-
+        #ts_file_path = "train_1.0.1"
+        #changed from self.name to ts_file_path
         img_file = os.path.join(self.data_dir, self.name, file_name)
+        #print("image file name:", img_file)
+
+        #print("self.name:", self.name)
 
         img = cv2.imread(img_file)
-        assert img is not None
+        
+        if img is None:
+            print("Image file name:", img_file)
+            print("self.name:", self.name)
+            assert img is not None
 
         return img
 

@@ -8,6 +8,7 @@ import time
 from loguru import logger
 
 import torch
+import wandb
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.tensorboard import SummaryWriter
 
@@ -67,6 +68,7 @@ class Trainer:
         )
 
     def train(self):
+        wandb.init(project="cotton", name="YLX_NC1_011", job_type='train', sync_tensorboard=True)
         self.before_train()
         try:
             self.train_in_epoch()
@@ -307,6 +309,7 @@ class Trainer:
             self.tblogger.add_scalar("val/COCOAP50", ap50, self.epoch + 1)
             self.tblogger.add_scalar("val/COCOAP50_95", ap50_95, self.epoch + 1)
             logger.info("\n" + summary)
+            wandb.log({'Summary':summary})
         synchronize()
 
         self.save_ckpt("last_epoch", ap50_95 > self.best_ap)

@@ -9,6 +9,7 @@ from loguru import logger
 
 import torch
 import torch.backends.cudnn as cudnn
+#import wandb
 
 from yolox.core import Trainer, launch
 from yolox.exp import get_exp
@@ -100,7 +101,7 @@ def main(exp, args):
             "which can slow down your training considerably! You may see unexpected behavior "
             "when restarting from checkpoints."
         )
-
+    #wandb.init(project="trials", job_type='train', sync_tensorboard=True)
     # set environment variables for distributed training
     configure_nccl()
     configure_omp()

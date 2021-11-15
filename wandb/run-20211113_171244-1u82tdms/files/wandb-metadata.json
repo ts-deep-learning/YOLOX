@@ -1,0 +1,35 @@
+{
+    "os": "Linux-5.4.0-1063-azure-x86_64-with-glibc2.17",
+    "python": "3.8.11",
+    "heartbeatAt": "2021-11-13T17:12:45.536053",
+    "startedAt": "2021-11-13T17:12:44.895572",
+    "docker": null,
+    "gpu": "Tesla K80",
+    "gpu_count": 1,
+    "cpu_count": 6,
+    "cuda": null,
+    "args": [
+        "-f",
+        "exps/example/custom/yolox_s.py",
+        "-d1",
+        "-b48",
+        "--fp16",
+        "-o",
+        "-c",
+        "./pre_tr_weights/yolox_s.pth",
+        "--experiment-name",
+        "trial3"
+    ],
+    "state": "running",
+    "program": "tools/train.py",
+    "codePath": "tools/train.py",
+    "git": {
+        "remote": "https://github.com/ts-deep-learning/YOLOX.git",
+        "commit": "2c2dd1397ab090b553c6e6ecfca8184fe83800e1"
+    },
+    "email": null,
+    "root": "/home/azureuser/work/src/cd_expts/YOLOX",
+    "host": "ts-nc-01",
+    "username": "azureuser",
+    "executable": "/home/azureuser/work/venvs/yoloX/bin/python"
+}
